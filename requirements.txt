@@ -3,6 +3,6 @@ jupyter
 scikit-learn
 pandas
 seaborn
-lightgbm
-# xgboost
+ucimlrepo
+xgboost
 imbalanced-learn
