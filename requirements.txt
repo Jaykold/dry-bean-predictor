@@ -6,3 +6,4 @@ seaborn
 ucimlrepo
 xgboost
 imbalanced-learn
+Flask
