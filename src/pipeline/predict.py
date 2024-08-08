@@ -1,11 +1,21 @@
 import sys
 import pandas as pd
 from src.exception import CustomException
+from src.utils import load_object
 
 
 class PredictPipeline:
     def __init__(self):
         pass
+
+    def predict(self, data:pd.DataFrame):
+        model_path = 'artifiacts/model.pkl'
+        preprocessor_path = 'artifiacts/preprocessor.pkl'
+        model = load_object(model_path)
+        model = load_object(preprocessor_path)
+        return model.predict(data)
+      
+
 
 class CustomData:
     def __init__(self,
