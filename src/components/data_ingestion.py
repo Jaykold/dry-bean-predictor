@@ -1,7 +1,7 @@
 from ucimlrepo import fetch_ucirepo 
 import pandas as pd
-import sys
 import os
+import sys
 
 from src.exception import CustomException
 from src.logger import logging
@@ -12,7 +12,6 @@ from pydantic import BaseModel
 
 import warnings
 warnings.filterwarnings("ignore")
-
 
 class DataIngestionConfig(BaseModel):
     raw_data_path: str = os.path.join('artifacts', "data.csv")
