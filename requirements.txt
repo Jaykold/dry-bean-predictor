@@ -8,3 +8,4 @@ xgboost
 imbalanced-learn
 Flask
 tdqm
+pydantic

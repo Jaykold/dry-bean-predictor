@@ -1,0 +1,98 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Dry Bean Classifier</h1>
+   
+       <form action="{{ url_for('predict')}}" method="post">
+        <h2>
+            <legend>Dry Bean Prediction</legend>
+        </h2>
+        <div class="mb-3">
+            <label class="form-label">Area</label>
+            <input class="form-control" type="float" name="area"
+             placeholder="Enter the Area"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Perimeter</label>
+            <input class="form-control" type="float" name="perimeter"
+             placeholder="Enter the Perimeter"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Major Axis Length</label>
+            <input class="form-control" type="float" name="majoraxislength"
+                placeholder="Enter the Major Axis Length"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Minor Axis Length</label>
+            <input class="form-control" type="float" name="minoraxislength"
+             placeholder="Enter the Minor Axis Length"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Aspect Ratio</label>
+            <input class="form-control" type="float" name="aspectratio"
+                placeholder="Enter the Aspect Ratio"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Eccentricity</label>
+            <input class="form-control" type="float" name="eccentricity"
+                placeholder="Enter the Eccentricity" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Convex Area</label>
+            <input class="form-control" type="float" name="convexarea"
+                placeholder="Enter the Convex Area" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Equivalent Diameter</label>
+            <input class="form-control" type="float" name="equivdiameter"
+                placeholder="Enter the Equivalent Diameter" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Extent</label>
+            <input class="form-control" type="float" name="extent"
+                placeholder="Enter the Extent" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Solidity</label>
+            <input class="form-control" type="float" name="solidity"
+                placeholder="Enter the Solidity" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Roundness</label>
+            <input class="form-control" type="float" name="roundness"
+                placeholder="Enter the Roundness" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Compactness</label>
+            <input class="form-control" type="float" name="compactness"
+                placeholder="Enter the Compactness" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Shape Factor1</label>
+            <input class="form-control" type="float" name="shapefactor1"
+                placeholder="Enter the Shape Factor1" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Shape Factor2</label>
+            <input class="form-control" type="float" name="shapefactor2"
+                placeholder="Enter the Shape Factor2" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Shape Factor3</label>
+            <input class="form-control" type="float" name="shapefactor3"
+                placeholder="Enter the shape Factor3" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Shape Factor4</label>
+            <input class="form-control" type="float" name="shapefactor4"
+                placeholder="Enter the shape Factor4" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict the Bean class" required />
+        </div>
+    </form>
+    <h2>
+       Your Dry bean is {{results}}
+    </h2>
+   <body>
+</html>
