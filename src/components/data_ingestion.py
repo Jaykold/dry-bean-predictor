@@ -5,10 +5,12 @@ import sys
 
 from src.exception import CustomException
 from src.logger import logging
+from src.components.data_preprocess import DataProcess
 
 
 from sklearn.model_selection import train_test_split
 from pydantic import BaseModel
+from typing import Tuple
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -24,7 +26,7 @@ class DataIngestion:
     def __init__(self) -> None:
         self.ingestion_config=DataIngestionConfig()
 
-    def read_dataframe(self)->pd.DataFrame:
+    def read_dataframe(self)->Tuple[str, str, str]:
         logging.info("Reading data from UCI Machine Learning Repository")
         try:
             # fetch dataset 
@@ -62,4 +64,8 @@ class DataIngestion:
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.read_dataframe()
+    train_data_path, validate_data_path, _ =obj.read_dataframe()
+
+    data_preprocessing=DataProcess()
+    data_preprocessing.initiate_data_preprocessing(train_data_path, validate_data_path)
+
