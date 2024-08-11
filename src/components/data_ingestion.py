@@ -1,18 +1,20 @@
-from ucimlrepo import fetch_ucirepo 
+import warnings
+warnings.filterwarnings("ignore")
+
+from ucimlrepo import fetch_ucirepo
 import pandas as pd
 import os
 import sys
 
+#from src.components.data_preprocess import DataProcess
 from src.exception import CustomException
 from src.logger import logging
-from src.components.data_preprocess import DataProcess
 
 
 from sklearn.model_selection import train_test_split
 from pydantic import BaseModel
 from typing import Tuple
 
-import warnings
 warnings.filterwarnings("ignore")
 
 class DataIngestionConfig(BaseModel):
@@ -25,6 +27,15 @@ class DataIngestionConfig(BaseModel):
 class DataIngestion:
     def __init__(self) -> None:
         self.ingestion_config=DataIngestionConfig()
+       
+        if os.path.exists(self.ingestion_config.raw_data_path):
+            # Check if the file is readable
+            if os.access(self.ingestion_config.raw_data_path, os.W_OK):
+                print("File is writeable")
+            else:
+                print("File is not writeable, check permissions")
+        else:
+            print("File does not exist")
 
     def read_dataframe(self)->Tuple[str, str, str]:
         logging.info("Reading data from UCI Machine Learning Repository")
@@ -35,9 +46,9 @@ class DataIngestion:
 
             # data (as pandas dataframes) 
             X = dry_bean.data.features 
-            y = dry_bean.data.targets
-            
+            y = dry_bean.data.targets            
             df = pd.concat([X, y], axis=1)
+            print(self.ingestion_config.raw_data_path)
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False)
 
@@ -65,7 +76,3 @@ class DataIngestion:
 if __name__=="__main__":
     obj=DataIngestion()
     train_data_path, validate_data_path, _ =obj.read_dataframe()
-
-    data_preprocessing=DataProcess()
-    data_preprocessing.initiate_data_preprocessing(train_data_path, validate_data_path)
-

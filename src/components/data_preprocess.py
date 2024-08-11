@@ -3,13 +3,11 @@ import sys
 
 import numpy as np
 import pandas as pd
-import pickle
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
 from pydantic import BaseModel
 
+from src.components.data_ingestion import DataIngestion
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
@@ -18,20 +16,12 @@ class DataProcessConfig(BaseModel):
     smote_file_path:str =os.path.join('artifacts', 'smote.pkl')
     scaler_file_path:str =os.path.join('artifacts', 'scaler.pkl')
     model_file_path:str =os.path.join('artifacts', 'model.pkl')
-
+    
 class DataProcess:
     def __init__(self):
         self.data_preprocessor_config=DataProcessConfig()
-
-    def get_data_preprocessed_object(self):
-        try:
-            self.smote = SMOTE()
-            self.scaler = StandardScaler()
-
-            return self.smote, self.scaler
-
-        except Exception as e:
-            raise CustomException(e, sys)
+        self.smote = SMOTE()
+        self.scaler = StandardScaler()
     
     def initiate_data_preprocessing(self, train_path:str, val_path:str):
             try:
@@ -41,7 +31,7 @@ class DataProcess:
                 logging.info("Read train and validation data completed")
 
                 # Obtain preprocessing object
-                smote, scaler = self.get_data_preprocessed_object()
+                smote, scaler = self.smote, self.scaler
                 
                 # Define target column
                 target = "Class"
@@ -83,4 +73,11 @@ class DataProcess:
                 )
 
             except Exception as e:
-                raise CustomException(e, sys)
+                raise CustomException(e, sys) from e           
+
+if __name__=="__main__":
+    obj=DataIngestion()
+    train_data_path, validate_data_path, _ =obj.read_dataframe()
+
+    data_preprocessing=DataProcess()
+    data_preprocessing.initiate_data_preprocessing(train_data_path, validate_data_path)
