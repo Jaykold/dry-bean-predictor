@@ -61,6 +61,7 @@ You can install the required packages using the provided `conda_dependencies.yml
 `conda env create -f conda_dependencies.yml`
 
 Or using `requirements.txt`:
+
 ```pip install -r requirements.txt```
 
 Alternatively, you can use the `setup.py` file to install the project and its dependencies:
