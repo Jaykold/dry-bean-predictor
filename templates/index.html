@@ -1,1 +1,36 @@
-<h1>Welcome to the home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dry Bean Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Dry Bean Classifier</h1>
+        </header>
+        <main>
+            <section class="description">
+                <h2>About This Application</h2>
+                <p>
+                    The Dry Bean Classifier is a web-based application designed to predict the class of dry beans
+                    based on various features. By inputting specific measurements and characteristics of dry beans, 
+                    this application leverages machine learning algorithms to classify the beans into different types.
+                </p>
+                <p>
+                    This tool is useful for agricultural research, quality control, and educational purposes, helping users
+                    understand the various factors affecting dry bean classification. Enter the relevant data and click
+                    on the "Predict" button to get your dry bean classification.
+                </p>
+                <a href="{{ url_for('predict_data') }}" class="btn">Go to Prediction Page</a>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Dry Bean Classifier. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
