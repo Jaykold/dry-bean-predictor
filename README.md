@@ -57,48 +57,70 @@ To run this project, you need to install the following packages:
 * pylint
 * matplotlib
 
-You can install the required packages using the provided `conda_dependencies.yml` file:
-`conda env create -f conda_dependencies.yml`
+## Setting up
+
+### Clone the repository
+
+```git clone https://github.com/Jaykold/dry-bean-predictor.git```
+
+### Navigate to the project directory
+
+```cd dry-bean-predictor```
+
+### Create a virtual environment
+You can install the required packages using the provided`conda_dependencies.yml` file:
+
+```conda env create -f conda_dependencies.yml```
+
+After creating your virtual environment, you can activate it using:
+
+```conda activate myenv // That's is the name specified in the .yml file```
 
 Or using `requirements.txt`:
-`pip install -r requirements.txt`
 
-Alternatively, you can use the `setup.py` file to install the project and its dependencies:
-`pip install .`
+```python -m venv myenv```
 
-Usage
-1. Clone the repository
-`git clone https://github.com/Jaykold/dry-bean-predictor.git`
+Activate the virtual environment
+* On windows
 
-2. Navigate to the project directory
-`cd dry-bean-predictor`
+    ```.\venv\Scripts\activate```
+* On macOS/Linux
 
-3. Run Jupyter Notebook
-`jupyter notebook`
+    ``` source venv/bin/activate```
 
-4. Open `dry_bean.ipynb` and execute the cells to preprocess the data and train the model
+Install the Required Packages
+
+```pip install -r requirements.txt```
+
+Alternatively, you can use ```pip install .``` to install the project and its dependencies as defined in the `setup.py` file.
+
+Run Jupyter Notebook
+
+```jupyter notebook```
+
+Open `dry_bean.ipynb` and execute the cells to preprocess the data and train the model
 
 ## Components
 
-### Data Ingestion
+#### Data Ingestion
 The `data_ingestion.py` script is responsible for loading the dataset and performing initial data checks.
 
-### Data Preprocessing
+#### Data Preprocessing
 The `data_preprocess.py` script handles data cleaning, feature engineering, and splitting the data into training and testing sets.
 
-### Model Training
+#### Model Training
 The `model_trainer.py` script trains a classification model using the preprocessed data and evaluates its performance.
 
-### Pipeline
+## Pipeline
 The `pipeline` directory contains script for model prediction.
 * `predict.py`
 
-### Model training
+#### Model training
 To train the model, run the `model_trainer.py` script:
-`python src/components/model_trainer.py`
+
+```python src/components/model_trainer.py```
 
 This will train the model and save the results to the `artifacts` directory.
 
-### Contributing
+## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-

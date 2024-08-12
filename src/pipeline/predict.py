@@ -3,6 +3,7 @@ import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object
 from pydantic import BaseModel
+from typing import Union
 
 
 class PredictPipeline:
@@ -14,19 +15,21 @@ class PredictPipeline:
             # Get artifacts path
             model_path = 'artifacts/model.pkl'
             scaler_path = 'artifacts/scaler.pkl'
-            labelencoder_path = 'artifiacts/labelencoder.pkl'
+            labelencoder_path = 'artifacts/labelencoder.pkl'
             
             # Load the model, SMOTE, and scaler objects
-            model = load_object(model_path)
-            scaler = load_object(scaler_path)
-            labelencoder = load_object(labelencoder_path)
+            model = load_object(file_path=model_path)
+            scaler = load_object(file_path=scaler_path)
+            labelencoder = load_object(file_path=labelencoder_path)
 
             # Transform the features using scaler
             data_scaled = scaler.transform(features)
-
+            print(data_scaled)
             # Make predictions using the model
-            preds = model.predict(data_scaled)
-            return preds, labelencoder
+            preds = model.predict(data_scaled).astype(int)
+            print(preds)
+            result = labelencoder.inverse_transform(preds)
+            return result
         
         except Exception as e:
             # Raise a custom exception if an error occurs
@@ -35,42 +38,42 @@ class PredictPipeline:
 
 
 class CustomData(BaseModel):
-            area:float
-            perimeter:float
-            majoraxislength:float
-            minoraxislength: float
-            aspectratio: float
-            eccentricity: float
-            convexarea: float
-            equivdiameter: float
-            extent: float
-            solidity: float
-            roundness: float
-            compactness: float
-            shapefactor1: float
-            shapefactor2: float
-            shapefactor3: float
-            shapefactor4: float
+            Area:Union[float, int]
+            Perimeter:float
+            MajorAxisLength:float
+            MinorAxisLength: float
+            Aspectratio: float
+            Eccentricity: float
+            Convexarea: float
+            Equivdiameter: float
+            Extent: float
+            Solidity: float
+            Roundness: float
+            Compactness: float
+            ShapeFactor1: float
+            ShapeFactor2: float
+            ShapeFactor3: float
+            ShapeFactor4: float
 
             def to_dataframe(self):
                 try:
                     data = {
-                        'Area': [self.area],
-                        'Perimeter': [self.perimeter],
-                        'MajorAxisLength': [self.majoraxislength],
-                        'MinorAxisLength': [self.minoraxislength],
-                        'AspectRatio': [self.aspectratio],
-                        'Eccentricity': [self.eccentricity],
-                        'ConvexArea': [self.convexarea],
-                        'EquivDiameter': [self.equivdiameter],
-                        'Extent': [self.extent],
-                        'Solidity': [self.solidity],
-                        'Roundness': [self.roundness],
-                        'Compactness': [self.compactness],
-                        'ShapeFactor1': [self.shapefactor1],
-                        'ShapeFactor2': [self.shapefactor2],
-                        'ShapeFactor3': [self.shapefactor3],
-                        'ShapeFactor4': [self.shapefactor4]
+                        'Area': [self.Area],
+                        'Perimeter': [self.Perimeter],
+                        'MajorAxisLength': [self.MajorAxisLength],
+                        'MinorAxisLength': [self.MinorAxisLength],
+                        'AspectRatio': [self.Aspectratio],
+                        'Eccentricity': [self.Eccentricity],
+                        'ConvexArea': [self.Convexarea],
+                        'EquivDiameter': [self.Equivdiameter],
+                        'Extent': [self.Extent],
+                        'Solidity': [self.Solidity],
+                        'Roundness': [self.Roundness],
+                        'Compactness': [self.Compactness],
+                        'ShapeFactor1': [self.ShapeFactor1],
+                        'ShapeFactor2': [self.ShapeFactor2],
+                        'ShapeFactor3': [self.ShapeFactor3],
+                        'ShapeFactor4': [self.ShapeFactor4]
                     }
                     return pd.DataFrame(data)
                 

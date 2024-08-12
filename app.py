@@ -18,29 +18,28 @@ def predict_data():
         return render_template('home.html')
     else:
         data=CustomData(
-            Area=request.form.get('area'),
-            Perimeter=request.form.get('perimeter'),
-            MajorAxisLength=request.form.get('majoraxislength'),
-            MinorAxisLength=request.form.get('minoraxislength'),
-            AspectRatio=request.form.get('aspectratio'),
-            Eccentricity=request.form.get('eccentricity'),
-            ConvexArea=request.form.get('convexarea'),
-            EquivDiameter=request.form.get('equivdiameter'),	
-            Extent=request.form.get('extent'),
-            Solidity=request.form.get('solidity'),
-            Roundness=request.form.get('roundness'),
-            Compactness=request.form.get('compactness'),
-            ShapeFactor1=request.form.get('shapefactor1'),
-            ShapeFactor2=request.form.get('shapefactor2'),
-            ShapeFactor3=request.form.get('shapefactor3'),
-            ShapeFactor4=request.form.get('shapefactor4')
+            Area=request.form.get('Area'),
+            Perimeter=request.form.get('Perimeter'),
+            MajorAxisLength=request.form.get('MajorAxisLength'),
+            MinorAxisLength=request.form.get('MinorAxisLength'),
+            Aspectratio=request.form.get('Aspectratio'),
+            Eccentricity=request.form.get('Eccentricity'),
+            Convexarea=request.form.get('Convexarea'),
+            Equivdiameter=request.form.get('Equivdiameter'),	
+            Extent=request.form.get('Extent'),
+            Solidity=request.form.get('Solidity'),
+            Roundness=request.form.get('Roundness'),
+            Compactness=request.form.get('Compactness'),
+            ShapeFactor1=request.form.get('ShapeFactor1'),
+            ShapeFactor2=request.form.get('ShapeFactor2'),
+            ShapeFactor3=request.form.get('ShapeFactor3'),
+            ShapeFactor4=request.form.get('ShapeFactor4')
         )
         pred_df=data.to_dataframe()
         print(pred_df)
         
         predict_pipeline=PredictPipeline()
-        y_pred, le=predict_pipeline.predict(pred_df)
-        results=le.inverse_transform(y_pred)
+        results=predict_pipeline.predict(pred_df)
         return render_template('home.html', results=results[0])
 
 

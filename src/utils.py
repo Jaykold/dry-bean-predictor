@@ -30,7 +30,6 @@ def load_object(file_path:str):
         with open(file_path, 'rb') as input:
             obj=pickle.load(input)
             logging.info(f"File sucessfully loaded from {file_path}")
-
             return obj
         
     except Exception as e:
