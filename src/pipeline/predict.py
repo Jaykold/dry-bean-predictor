@@ -14,21 +14,23 @@ class PredictPipeline:
             # Get artifacts path
             model_path = 'artifacts/model.pkl'
             scaler_path = 'artifacts/scaler.pkl'
+            labelencoder_path = 'artifiacts/labelencoder.pkl'
             
             # Load the model, SMOTE, and scaler objects
             model = load_object(model_path)
             scaler = load_object(scaler_path)
+            labelencoder = load_object(labelencoder_path)
 
             # Transform the features using scaler
             data_scaled = scaler.transform(features)
 
             # Make predictions using the model
             preds = model.predict(data_scaled)
-            return preds
+            return preds, labelencoder
         
         except Exception as e:
             # Raise a custom exception if an error occurs
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
       
 
 
@@ -71,5 +73,6 @@ class CustomData(BaseModel):
                         'ShapeFactor4': [self.shapefactor4]
                     }
                     return pd.DataFrame(data)
+                
                 except Exception as e:
-                    raise CustomException(e, sys)
+                    raise CustomException(e, sys) from e

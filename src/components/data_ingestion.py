@@ -1,21 +1,20 @@
+import os
+import sys
+from pydantic import BaseModel
+from typing import Tuple
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+from ucimlrepo import fetch_ucirepo # Get data from UCI ML repo
+
 import warnings
 warnings.filterwarnings("ignore")
 
-from ucimlrepo import fetch_ucirepo
-import pandas as pd
-import os
-import sys
 
 #from src.components.data_preprocess import DataProcess
 from src.exception import CustomException
 from src.logger import logging
 
-
-from sklearn.model_selection import train_test_split
-from pydantic import BaseModel
-from typing import Tuple
-
-warnings.filterwarnings("ignore")
 
 class DataIngestionConfig(BaseModel):
     raw_data_path: str = os.path.join('artifacts', "data.csv")
@@ -48,7 +47,8 @@ class DataIngestion:
             X = dry_bean.data.features 
             y = dry_bean.data.targets            
             df = pd.concat([X, y], axis=1)
-            print(self.ingestion_config.raw_data_path)
+            
+            #print(self.ingestion_config.raw_data_path)
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False)
 
@@ -65,12 +65,12 @@ class DataIngestion:
 
             return(
                 self.ingestion_config.train_data_path,
-                self.ingestion_config.test_data_path,
-                self.ingestion_config.validate_data_path
+                self.ingestion_config.validate_data_path,
+                self.ingestion_config.test_data_path
             )
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
         
 
 if __name__=="__main__":

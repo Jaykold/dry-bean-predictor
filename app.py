@@ -39,7 +39,8 @@ def predict_data():
         print(pred_df)
         
         predict_pipeline=PredictPipeline()
-        results=predict_pipeline.predict(pred_df)
+        y_pred, le=predict_pipeline.predict(pred_df)
+        results=le.inverse_transform(y_pred)
         return render_template('home.html', results=results[0])
 
 

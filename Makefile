@@ -1,21 +1,24 @@
 PYTHON := python
 
 # Define the scripts
-DATA_PREPROCESS := src/components/data_preprocess.py
+DATA_TRAINING := src/components/model_trainer.py
 
 # Default target
 all: preprocess	
 
-# Target to run data preprocessing
+# Target to run model training
 preprocess: ensure_artifacts_dir
-	$(PYTHON) $(DATA_PREPROCESS)
+	$(PYTHON) $(DATA_TRAINING)
 
 ensure_artifacts_dir:
 	if not exist artifacts mkdir artifacts
 
 # Clean target (optional)
 clean:
-	del /Q *.pyc
-	rmdir /S /Q __pycache__
+	if exist *.pyc del /Q *.pyc
+	if exist __pycache__ rmdir /S /Q __pycache__
+
+	# -del /Q *.pyc
+	# -rmdir /S /Q __pycache__
 
 .PHONY: all preprocess clean ensure_artifacts_dir

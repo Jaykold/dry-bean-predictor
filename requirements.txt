@@ -9,4 +9,4 @@ imbalanced-learn
 Flask
 tdqm
 pydantic
-hyperopt
+pylint

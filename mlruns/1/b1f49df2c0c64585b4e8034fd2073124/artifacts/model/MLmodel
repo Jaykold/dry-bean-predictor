@@ -1,0 +1,40 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.1
+mlflow_version: 2.15.1
+model_size_bytes: 7368421
+model_uuid: 89f785ceb587485c858f08aaaec032ff
+run_id: b1f49df2c0c64585b4e8034fd2073124
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_payload.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Area", "required": true}, {"type": "double",
+    "name": "Perimeter", "required": true}, {"type": "double", "name": "MajorAxisLength",
+    "required": true}, {"type": "double", "name": "MinorAxisLength", "required": true},
+    {"type": "double", "name": "AspectRatio", "required": true}, {"type": "double",
+    "name": "Eccentricity", "required": true}, {"type": "double", "name": "ConvexArea",
+    "required": true}, {"type": "double", "name": "EquivDiameter", "required": true},
+    {"type": "double", "name": "Extent", "required": true}, {"type": "double", "name":
+    "Solidity", "required": true}, {"type": "double", "name": "Roundness", "required":
+    true}, {"type": "double", "name": "Compactness", "required": true}, {"type": "double",
+    "name": "ShapeFactor1", "required": true}, {"type": "double", "name": "ShapeFactor2",
+    "required": true}, {"type": "double", "name": "ShapeFactor3", "required": true},
+    {"type": "double", "name": "ShapeFactor4", "required": true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+utc_time_created: '2024-08-12 01:25:13.190731'
