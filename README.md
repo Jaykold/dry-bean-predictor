@@ -78,18 +78,6 @@ After creating your virtual environment, you can activate it using:
 
 Or using `requirements.txt`:
 
-```python -m venv myenv```
-
-Activate the virtual environment
-* On windows
-
-    ```.\venv\Scripts\activate```
-* On macOS/Linux
-
-    ``` source venv/bin/activate```
-
-Install the Required Packages
-
 ```pip install -r requirements.txt```
 
 Alternatively, you can use ```pip install .``` to install the project and its dependencies as defined in the `setup.py` file.
