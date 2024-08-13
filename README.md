@@ -80,7 +80,7 @@ Or using `requirements.txt`:
 
 ```pip install -r requirements.txt```
 
-Alternatively, you can use ```pip install .``` to install the project and its dependencies as defined in the `setup.py` file.
+Run ```pip install -e .``` to install the project in editable mode.
 
 Run Jupyter Notebook
 
