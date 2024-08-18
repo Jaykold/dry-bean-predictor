@@ -74,7 +74,7 @@ You can install the required packages using the provided`conda_dependencies.yml`
 
 After creating your virtual environment, you can activate it using:
 
-```conda activate myenv // That's is the name specified in the .yml file```
+<codespace/>```conda activate myenv // That's is the name specified in the .yml file```</codespace>
 
 Or using `requirements.txt`:
 

@@ -9,7 +9,7 @@ setTimeout(function() {
 }, 2000000);
 
 
-const populateDropdown = (input, dropDown) => {numberValues.forEach(value => {
+const populateDropdown = (input, dropDown, values) => {values.forEach(value => {
 // Optional: Show/hide dropdown when input is focused
 input.addEventListener('focus', () => {
     dropDown.style.display = 'block';
@@ -35,17 +35,19 @@ const dropDownChild = document.createElement('div');
     dropDown.appendChild(dropDownChild);
 });}
 
-const numberValues = [1, 2, 3, 4, 5, 6];
+const areaValues = [1, 2, 3, 4, 5, 6];
 
 const areaInput = document.getElementById("area-input");
 const areaDropDown = document.getElementById("area-dropdown");
 
-populateDropdown(areaInput, areaDropDown)
+populateDropdown(areaInput, areaDropDown, areaValues)
 
+
+const perimeterValues = [1, 2, 3, 4, 5, 6, 7];
 const perimeterInput = document.getElementById("perimeter-input");
 const perimeterDropDown = document.getElementById("perimeter-dropdown");
 
-populateDropdown(perimeterInput, perimeterDropDown)
+populateDropdown(perimeterInput, perimeterDropDown, perimeterValues)
 
 
 

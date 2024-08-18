@@ -1,11 +1,12 @@
 import os
 import sys
 
+import pickle
+from typing import Any, Union, Tuple
 import mlflow
 import pandas as pd
 import numpy as np
-import pickle
-from typing import Any, Union, Tuple
+
 from sklearn.model_selection import RandomizedSearchCV, KFold
 from sklearn.metrics import accuracy_score, classification_report
 
@@ -27,8 +28,8 @@ def save_object(obj:Any, file_path:str):
     
 def load_object(file_path:str):
     try:
-        with open(file_path, 'rb') as input:
-            obj=pickle.load(input)
+        with open(file_path, 'rb') as f_in:
+            obj=pickle.load(f_in)
             logging.info(f"File sucessfully loaded from {file_path}")
             return obj
         
@@ -36,7 +37,7 @@ def load_object(file_path:str):
         raise CustomException(e, sys) from e
     
 
-def initialize_mflow():
+def initialize_mlflow():
     try:
         logging.info("Initializing database...")
         MLFLOW_TRACKING_URI = "sqlite:///mlflow.db"
@@ -101,9 +102,11 @@ def log_best_model(results: pd.DataFrame, features:pd.DataFrame):
         with mlflow.start_run(run_id=best_run_id):
             if best_model_name == 'XGBoost':
                 mlflow.xgboost.log_model(model, "xgboost_model", input_example=schema)
+                best_model_uri = f"runs:/{best_run_id}/xgboost_model"
                 logging.info("XGBoost model succesfully loaded")
             else:
                 mlflow.sklearn.log_model(model, "model", input_example=schema)
+                best_model_uri = f"runs:/{best_run_id}/model"
                 logging.info("Sklearn model succesfully loaded")
         
         print(type(model))
@@ -141,10 +144,10 @@ def load_model(model_uri:str):
            logging.info("Model gotten is an Sklearn model")
            skl_model = mlflow.sklearn.load_model(model_uri)
            return skl_model
-       else:
-           logging.info("Model gotten is an XGBoost model")
-           xgb_model = mlflow.xgboost.load_model(model_uri)
-           return xgb_model
+       
+       logging.info("Model gotten is an XGBoost model")
+       xgb_model = mlflow.xgboost.load_model(model_uri)
+       return xgb_model
         
     except Exception as e:
         raise CustomException(e, sys) from e
@@ -152,8 +155,9 @@ def load_model(model_uri:str):
 
 def evaluate_model(model, X_val, y_val, model_path)-> Tuple[float, str]:
     """
-    This function evaluates a given classification model on validation data, calculates the accuracy score,
-    generates a classification report, and saves the model to the specified path.
+    This function evaluates a given classification model on validation data, 
+    calculates the accuracy score, generates a classification report, 
+    and saves the model to the specified path.
 
     Parameters:
     model: The classification model to be evaluated.
@@ -163,7 +167,8 @@ def evaluate_model(model, X_val, y_val, model_path)-> Tuple[float, str]:
     output_dict (bool): If True, return the classification report as a dictionary. Default is False.
 
     Returns:
-    Tuple[float, Union[str, dict]]: A tuple containing the accuracy score (float) and the classification report
+    Tuple[float, Union[str, dict]]: A tuple containing the accuracy score (float) 
+    and the classification report
     (str or dict, depending on the value of output_dict).
 
     Raises:
