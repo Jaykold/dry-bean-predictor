@@ -1,9 +1,12 @@
 import sys
 from typing import Union
+
 import pandas as pd
 from pydantic import BaseModel
+
 from src.exception import CustomException
 from src.utils import load_object
+
 
 class PredictPipeline:
     def __init__(self):
@@ -15,7 +18,7 @@ class PredictPipeline:
             model_path = 'artifacts/model.pkl'
             scaler_path = 'artifacts/scaler.pkl'
             labelencoder_path = 'artifacts/labelencoder.pkl'
-            
+
             # Load the model, SMOTE, and scaler objects
             model = load_object(file_path=model_path)
             scaler = load_object(file_path=scaler_path)
@@ -24,10 +27,10 @@ class PredictPipeline:
             # Transform the features using scaler
             data_scaled = scaler.transform(features)
             # Make predictions using the model
-            pred = model.predict(data_scaled)#.astype(int)
+            pred = model.predict(data_scaled).astype(int)
             result = labelencoder.inverse_transform(pred)
             return result[0].capitalize()
-        
+
         except Exception as e:
             # Raise a custom exception if an error occurs
             raise CustomException(e, sys) from e
@@ -71,6 +74,6 @@ class CustomData(BaseModel):
                         'ShapeFactor4': [self.ShapeFactor4]
                     }
                     return pd.DataFrame(data)
-                
+
                 except Exception as e:
                     raise CustomException(e, sys) from e

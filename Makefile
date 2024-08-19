@@ -1,10 +1,11 @@
+# For windows, use the following command to run the makefile
 PYTHON := python
 
 # Define the scripts
 DATA_TRAINING := src/components/model_trainer.py
 
 # Default target
-all: preprocess	
+all: preprocess
 
 # Target to run model training
 preprocess: ensure_artifacts_dir
@@ -24,35 +25,25 @@ clean:
 .PHONY: all preprocess clean ensure_artifacts_dir
 
 
+# # for linux, use the following command to run the makefile
+# PYTHON := python3
 
-# Makefile for ML Project
+# Define the scripts
+# DATA_TRAINING := src/components/model_trainer.py
 
-# Variables
-TRAIN_DATA_PATH = artifacts/train_data.csv
-VALIDATE_DATA_PATH = artifacts/validate_data.csv
-TRAIN_SCRIPT = src/components/model_trainer.py
-DATA_INGEST_SCRIPT = src/components/data_ingestion.py
-DATA_PREPROCESS_SCRIPT = src/components/data_preprocessing.py
+# # Default target
+# all: preprocess
 
-# Targets
+# # Target to run model training
+# preprocess: ensure_artifacts_dir
+# 	$(PYTHON) $(DATA_TRAINING)
 
-.PHONY: all data_ingest preprocess train clean
+# ensure_artifacts_dir:
+# 	mkdir -p artifacts
 
-all: data_ingest preprocess train
+# # Clean target (optional)
+# clean:
+# 	rm -f *.pyc
+# 	rm -rf __pycache__
 
-data_ingest:
-	@echo "Running Data Ingestion..."
-	python $(DATA_INGEST_SCRIPT) --train_data $(TRAIN_DATA_PATH) --validate_data $(VALIDATE_DATA_PATH)
-
-preprocess: data_ingest
-	@echo "Running Data Preprocessing..."
-	python $(DATA_PREPROCESS_SCRIPT) --train_data $(TRAIN_DATA_PATH) --validate_data $(VALIDATE_DATA_PATH)
-
-train: preprocess
-	@echo "Running Model Training..."
-	python $(TRAIN_SCRIPT) --train_data $(TRAIN_DATA_PATH) --validate_data $(VALIDATE_DATA_PATH)
-
-clean:
-	@echo "Cleaning up..."
-	rm -rf artifacts/ logs/
-
+# .PHONY: all preprocess clean ensure_artifacts_dir
