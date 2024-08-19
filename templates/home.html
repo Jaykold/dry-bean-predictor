@@ -1,90 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='icons/favicon.ico') }}"
+      type="image/x-icon"
+    />
     <title>Dry Bean Classifier</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login">
-        <form class="bean-form" action="{{ url_for('predict_data')}}" method="post">
-            <h1 class="heading">Dry Bean Prediction</h1>
-            
+      <form
+        class="bean-form"
+        action="{{ url_for('predict_data')}}"
+        method="post"
+      >
+        <h1 class="heading">Dry Bean Prediction</h1>
+        <div class="two-grid">
+          <div class="two-grid-child">
             <div class="form-group">
-                <label class="form-label">Area</label>
-                <input id="area-input" class="form-control " type="number" name="Area" placeholder="Enter the Area" min="0" step="any" required />
-                <div id="area-dropdown" class="dropdown-menu"></div>
+              <label class="form-label">Area</label>
+              <input
+                id="area-input"
+                class="form-control"
+                type="number"
+                name="Area"
+                placeholder="Enter the Area"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="area-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Perimeter</label>
-                <input id="perimeter-input" class="form-control " type="number" name="Perimeter" placeholder="Enter the Perimeter" min="0" step="any" required />
-                <div id="perimeter-dropdown" class="dropdown-menu"></div>
+              <label class="form-label">Perimeter</label>
+              <input
+                id="perimeter-input"
+                class="form-control"
+                type="number"
+                name="Perimeter"
+                placeholder="Enter the Perimeter"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="perimeter-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Major Axis Length</label>
-                <input class="form-control " type="number" name="MajorAxisLength" placeholder="Enter the Major Axis Length" min="0" step="any" required />
+              <label class="form-label">Major Axis Length</label>
+              <input
+                id="majoraxislength-input"
+                class="form-control"
+                type="number"
+                name="MajorAxisLength"
+                placeholder="Enter the Major Axis Length"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="majoraxislength-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Minor Axis Length</label>
-                <input class="form-control " type="number" name="MinorAxisLength" placeholder="Enter the Minor Axis Length" min="0" step="any" required />
+              <label class="form-label">Minor Axis Length</label>
+              <input
+                id="minoraxislength-input"
+                class="form-control"
+                type="number"
+                name="MinorAxisLength"
+                placeholder="Enter the Minor Axis Length"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="minoraxislength-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Aspect Ratio</label>
-                <input class="form-control " type="number" name="Aspectratio" placeholder="Enter the Aspect Ratio" min="0" step="any" required />
+              <label class="form-label">Aspect Ratio</label>
+              <input
+                id="aspectratio-input"
+                class="form-control"
+                type="number"
+                name="Aspectratio"
+                placeholder="Enter the Aspect Ratio"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="aspectratio-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Eccentricity</label>
-                <input class="form-control " type="number" name="Eccentricity" placeholder="Enter the Eccentricity" min="0" max="1" step="any" required />
+              <label class="form-label">Eccentricity</label>
+              <input
+                id="eccentricity-input"
+                class="form-control"
+                type="number"
+                name="Eccentricity"
+                placeholder="Enter the Eccentricity"
+                min="0"
+                max="1"
+                step="any"
+                required
+              />
+              <div id="eccentricity-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Convex Area</label>
-                <input class="form-control " type="number" name="Convexarea" placeholder="Enter the Convex Area" min="0" step="any" required />
+              <label class="form-label">Convex Area</label>
+              <input
+                id="convexarea-input"
+                class="form-control"
+                type="number"
+                name="Convexarea"
+                placeholder="Enter the Convex Area"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="convexarea-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Equivalent Diameter</label>
-                <input class="form-control " type="number" name="Equivdiameter" placeholder="Enter the Equivalent Diameter" min="0" step="any" required />
+              <label class="form-label">Equivalent Diameter</label>
+              <input
+                id="equivdiameter-input"
+                class="form-control"
+                type="number"
+                name="Equivdiameter"
+                placeholder="Enter the Equivalent Diameter"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="equivdiameter-dropdown" class="dropdown-menu"></div>
+            </div>
+          </div>
+          <div class="two-grid-child">
+            <div class="form-group">
+              <label class="form-label">Extent</label>
+              <input
+                id="extent-input"
+                class="form-control"
+                type="number"
+                name="Extent"
+                placeholder="Enter the Extent"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="extent-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Extent</label>
-                <input class="form-control " type="number" name="Extent" placeholder="Enter the Extent" min="0" step="any" required />
+              <label class="form-label">Solidity</label>
+              <input
+                id="solidity-input"
+                class="form-control"
+                type="number"
+                name="Solidity"
+                placeholder="Enter the Solidity"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="solidity-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Solidity</label>
-                <input class="form-control " type="number" name="Solidity" placeholder="Enter the Solidity" min="0" step="any" required />
+              <label class="form-label">Roundness</label>
+              <input
+                id="roundness-input"
+                class="form-control"
+                type="number"
+                name="Roundness"
+                placeholder="Enter the Roundness"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="roundness-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Roundness</label>
-                <input class="form-control " type="number" name="Roundness" placeholder="Enter the Roundness" min="0" step="any" required />
+              <label class="form-label">Compactness</label>
+              <input
+                id="compactness-input"
+                class="form-control"
+                type="number"
+                name="Compactness"
+                placeholder="Enter the Compactness"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="compactness-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Compactness</label>
-                <input class="form-control " type="number" name="Compactness" placeholder="Enter the Compactness" min="0" step="any" required />
+              <label class="form-label">Shape Factor1</label>
+              <input
+                id="shapefactor1-input"
+                class="form-control"
+                type="number"
+                name="ShapeFactor1"
+                placeholder="Enter the Shape Factor1"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="shapefactor1-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Shape Factor1</label>
-                <input class="form-control " type="number" name="ShapeFactor1" placeholder="Enter the Shape Factor1" min="0" step="any" required />
+              <label class="form-label">Shape Factor2</label>
+              <input
+                id="shapefactor2-input"
+                class="form-control"
+                type="number"
+                name="ShapeFactor2"
+                placeholder="Enter the Shape Factor2"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="shapefactor2-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Shape Factor2</label>
-                <input class="form-control " type="number" name="ShapeFactor2" placeholder="Enter the Shape Factor2" min="0" step="any" required />
+              <label class="form-label">Shape Factor3</label>
+              <input
+                id="shapefactor3-input"
+                class="form-control"
+                type="number"
+                name="ShapeFactor3"
+                placeholder="Enter the Shape Factor3"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="shapefactor3-dropdown" class="dropdown-menu"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">Shape Factor3</label>
-                <input class="form-control " type="number" name="ShapeFactor3" placeholder="Enter the Shape Factor3" min="0" step="any" required />
+              <label class="form-label">Shape Factor4</label>
+              <input
+                id="shapefactor4-input"
+                class="form-control"
+                type="number"
+                name="ShapeFactor4"
+                placeholder="Enter the Shape Factor4"
+                min="0"
+                step="any"
+                required
+              />
+              <div id="shapefactor4-dropdown" class="dropdown-menu"></div>
             </div>
-            <div class="form-group">
-                <label class="form-label">Shape Factor4</label>
-                <input class="form-control " type="number" name="ShapeFactor4" placeholder="Enter the Shape Factor4" min="0" step="any" required />
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Predict the Bean class" />
-            </div>
-        </form>    
-        <h2 id="result" class="hidden">Your Dry bean is {{results}}</h2>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="btn btn-primary"
+            type="submit"
+            value="Predict the Bean class"
+          />
+        </div>
+      </form>
+      <h2 id="result" class="hidden">Your Dry bean is {{results}}</h2>
     </div>
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-</body>
+  </body>
 </html>

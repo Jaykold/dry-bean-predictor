@@ -80,13 +80,7 @@ Or using `requirements.txt`:
 
 ```pip install -r requirements.txt```
 
-Run ```pip install -e .``` to install the project in editable mode.
-
-Run Jupyter Notebook
-
-```jupyter notebook```
-
-Open `dry_bean.ipynb` and execute the cells to preprocess the data and train the model
+Run ```pip install -e .``` to install the required packages and project in editable mode.
 
 ## Components
 
@@ -108,7 +102,25 @@ To train the model, run the `model_trainer.py` script:
 
 ```python src/components/model_trainer.py```
 
+Or use the Makefile by typing ```make``` in your terminal
+
 This will train the model and save the results to the `artifacts` directory.
+
+If you are using windows you can install ```make``` by running this code in your terminal
+
+```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.WebClient]::new().DownloadString('https://community.chocolatey.org/install.ps1') | Invoke-Expression```
+
+then install make using choco
+
+```choco install make```
+
+To run app.py to predict your bean, use this code command
+
+#### On windows
+``` waitress-serve --listen=0.0.0.0:9696 app:app ```
+
+#### On Linux
+```gunicorn --bind=0.0.0.0:9696 app:app```
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
