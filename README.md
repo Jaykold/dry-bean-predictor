@@ -61,26 +61,24 @@ To run this project, you need to install the following packages:
 
 ### Clone the repository
 
-```git clone https://github.com/Jaykold/dry-bean-predictor.git```
+```
+git clone https://github.com/Jaykold/dry-bean-predictor.git
+```
 
 ### Navigate to the project directory
 
-```cd dry-bean-predictor```
+```
+cd dry-bean-predictor
+```
 
 ### Create a virtual environment
-You can install the required packages using the provided`conda_dependencies.yml` file:
+You can install the required packages using the code provided below:
 
-```conda env create -f conda_dependencies.yml```
+```
+pip install -e .
+```
+Run this to install the required packages and project in editable mode.
 
-After creating your virtual environment, you can activate it using:
-
-<codespace/>```conda activate myenv // That's is the name specified in the .yml file```</codespace>
-
-Or using `requirements.txt`:
-
-```pip install -r requirements.txt```
-
-Run ```pip install -e .``` to install the required packages and project in editable mode.
 
 ## Components
 
@@ -100,7 +98,9 @@ The `pipeline` directory contains script for model prediction.
 #### Model training
 To train the model, run the `model_trainer.py` script:
 
-```python src/components/model_trainer.py```
+```
+python src/components/model_trainer.py
+```
 
 Or use the Makefile by typing ```make``` in your terminal
 
@@ -108,19 +108,37 @@ This will train the model and save the results to the `artifacts` directory.
 
 If you are using windows you can install ```make``` by running this code in your terminal
 
-```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.WebClient]::new().DownloadString('https://community.chocolatey.org/install.ps1') | Invoke-Expression```
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.WebClient]::new().DownloadString('https://community.chocolatey.org/install.ps1') | Invoke-Expression
+```
 
 then install make using choco
 
-```choco install make```
+```
+choco install make
+```
+On linux check if ```make``` is installed
+
+```
+make --version
+```
+
+if not installed, run
+
+```
+sudo apt update
+sudo apt install make
+```
+.
 
 To run app.py to predict your bean, use this code command
 
-#### On windows
-``` waitress-serve --listen=0.0.0.0:9696 app:app ```
-
-#### On Linux
-```gunicorn --bind=0.0.0.0:9696 app:app```
+```
+# On windows
+waitress-serve --listen=0.0.0.0:9696 app:app
+# On Linux
+gunicorn --bind=0.0.0.0:9696 app:app
+```
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
