@@ -10,3 +10,8 @@ Flask
 tdqm
 pydantic
 pylint
+evidently
+psycopg
+pytest
+pytest-flask
+gunicorn

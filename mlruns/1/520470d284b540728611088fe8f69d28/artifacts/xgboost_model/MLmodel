@@ -1,0 +1,40 @@
+artifact_path: xgboost_model
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.12.4
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 2.1.0
+mlflow_version: 2.15.1
+model_size_bytes: 1219840
+model_uuid: 4f645dacef5d45c0a2cf142cd30d02b8
+run_id: 520470d284b540728611088fe8f69d28
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_payload.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Area", "required": true}, {"type": "double",
+    "name": "Perimeter", "required": true}, {"type": "double", "name": "MajorAxisLength",
+    "required": true}, {"type": "double", "name": "MinorAxisLength", "required": true},
+    {"type": "double", "name": "AspectRatio", "required": true}, {"type": "double",
+    "name": "Eccentricity", "required": true}, {"type": "double", "name": "ConvexArea",
+    "required": true}, {"type": "double", "name": "EquivDiameter", "required": true},
+    {"type": "double", "name": "Extent", "required": true}, {"type": "double", "name":
+    "Solidity", "required": true}, {"type": "double", "name": "Roundness", "required":
+    true}, {"type": "double", "name": "Compactness", "required": true}, {"type": "double",
+    "name": "ShapeFactor1", "required": true}, {"type": "double", "name": "ShapeFactor2",
+    "required": true}, {"type": "double", "name": "ShapeFactor3", "required": true},
+    {"type": "double", "name": "ShapeFactor4", "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+utc_time_created: '2024-08-17 20:20:39.766356'

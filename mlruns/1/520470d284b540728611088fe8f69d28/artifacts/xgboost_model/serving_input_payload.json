@@ -1,0 +1,42 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Area",
+      "Perimeter",
+      "MajorAxisLength",
+      "MinorAxisLength",
+      "AspectRatio",
+      "Eccentricity",
+      "ConvexArea",
+      "EquivDiameter",
+      "Extent",
+      "Solidity",
+      "Roundness",
+      "Compactness",
+      "ShapeFactor1",
+      "ShapeFactor2",
+      "ShapeFactor3",
+      "ShapeFactor4"
+    ],
+    "data": [
+      [
+        75351.0,
+        1095.258,
+        408.4086836,
+        236.0432439,
+        1.730228228,
+        0.816066202,
+        76285.0,
+        309.7416229,
+        0.794305532,
+        0.98775644,
+        0.789343462,
+        0.758410963,
+        0.005420083,
+        0.001106125,
+        0.575187188,
+        0.995205109
+      ]
+    ]
+  }
+}

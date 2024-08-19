@@ -1,10 +1,9 @@
 import sys
+from typing import Union
 import pandas as pd
+from pydantic import BaseModel
 from src.exception import CustomException
 from src.utils import load_object
-from pydantic import BaseModel
-from typing import Union
-
 
 class PredictPipeline:
     def __init__(self):
@@ -24,18 +23,14 @@ class PredictPipeline:
 
             # Transform the features using scaler
             data_scaled = scaler.transform(features)
-            print(data_scaled)
             # Make predictions using the model
-            preds = model.predict(data_scaled).astype(int)
-            print(preds)
-            result = labelencoder.inverse_transform(preds)
-            return result
+            pred = model.predict(data_scaled)#.astype(int)
+            result = labelencoder.inverse_transform(pred)
+            return result[0].capitalize()
         
         except Exception as e:
             # Raise a custom exception if an error occurs
             raise CustomException(e, sys) from e
-      
-
 
 class CustomData(BaseModel):
             Area:Union[float, int]
@@ -44,7 +39,7 @@ class CustomData(BaseModel):
             MinorAxisLength: float
             Aspectratio: float
             Eccentricity: float
-            Convexarea: float
+            Convexarea: Union[float, int]
             Equivdiameter: float
             Extent: float
             Solidity: float

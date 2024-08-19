@@ -2,8 +2,6 @@ from flask import Flask, request, render_template
 import numpy as np
 import pandas as pd
 
-from sklearn.preprocessing import StandardScaler
-
 from src.pipeline.predict import CustomData, PredictPipeline
 
 app = Flask(__name__)
@@ -25,7 +23,7 @@ def predict_data():
             Aspectratio=request.form.get('Aspectratio'),
             Eccentricity=request.form.get('Eccentricity'),
             Convexarea=request.form.get('Convexarea'),
-            Equivdiameter=request.form.get('Equivdiameter'),	
+            Equivdiameter=request.form.get('Equivdiameter'),
             Extent=request.form.get('Extent'),
             Solidity=request.form.get('Solidity'),
             Roundness=request.form.get('Roundness'),
@@ -40,8 +38,8 @@ def predict_data():
         
         predict_pipeline=PredictPipeline()
         results=predict_pipeline.predict(pred_df)
-        return render_template('home.html', results=results[0])
+        return render_template('home.html', results=results)
 
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True, port=9696)
