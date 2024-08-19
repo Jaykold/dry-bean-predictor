@@ -6,7 +6,6 @@ RUN pip install -U pip
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
 
 COPY setup.py .
 # installs the project in executable mode
