@@ -1,4 +1,10 @@
-# Dry Bean Classification Analysis 🚀
+![Home Page](images/Home_page.png)
+
+![predict](images/predict.png)
+
+![predict](images/predict1.png)
+
+# Dry Bean Classification 🚀
 
 This project is focused on the classification of different types of dry beans using a machine learning approach. The dataset consists of 16 feature columns and 1 target column "Class" with 7 unique classes. The project is implemented with several packages and tools to facilitate data preprocessing, model training, and evaluation.
 
@@ -139,6 +145,29 @@ waitress-serve --listen=0.0.0.0:9696 app:app
 # On Linux
 gunicorn --bind=0.0.0.0:9696 app:app
 ```
+
+### Building and Running the Docker Container
+
+To build and run the Docker container for the Dry Bean Prediction Service, follow these steps:
+
+1. Build the Docker Image:
+```
+docker build -t dry-bean-prediction-service:v1 .
+```
+This command creates a Docker image named dry-bean-prediction-service with the tag v1. The . at the end specifies the current directory as the build context, which contains the Dockerfile and other necessary files.
+
+2. Run the Docker Container:
+
+```
+docker run -it --rm -p 9696:9696 dry-bean-prediction-service:v1
+```
+
+This command runs the Docker container from the dry-bean-prediction-service:v1 image. The options used are:
+* ```-it```: Runs the container in interactive mode with a terminal.
+* ```--rm```: Automatically removes the container when it exits.
+* ```-p 9696:9696```: Maps port 9696 on your local machine to port 9696 in the container, allowing you to access the service.
+
+By following these steps, you can build and run the Dry Bean Prediction Service locally using Docker.
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
