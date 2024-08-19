@@ -1,6 +1,7 @@
 import os
 import sys
-
+from sqlalchemy import create_engine, inspect
+from sqlalchemy.exc import OperationalError
 import pickle
 from typing import Any, Union, Tuple
 import mlflow
@@ -43,6 +44,23 @@ def initialize_mlflow():
         MLFLOW_TRACKING_URI = "sqlite:///mlflow.db"
         MLFLOW_EXPERIMENT_NAME = "dry-bean-detection"
 
+        # Check if the database exists
+        db_exists = os.path.exists("mlflow.db")
+        if db_exists:
+            # Try connecting to the database to check its validity
+            try:
+                engine = create_engine(MLFLOW_TRACKING_URI)
+                inspector = inspect(engine)
+                tables = inspector.get_table_names()
+                logging.info(f"Existing database tables: {tables}")
+            except OperationalError:
+                print("removing db...")
+                logging.error("Database schema is outdated or corrupted.", exc_info=True)
+                logging.info("Deleting the old database and creating a new one.")
+                os.remove("mlflow.db")
+                print("db removed")
+ 
+        # Initialize MLflow
         mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
         mlflow.set_experiment(MLFLOW_EXPERIMENT_NAME)
 

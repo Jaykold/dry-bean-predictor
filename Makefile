@@ -28,8 +28,8 @@ clean:
 # Makefile for ML Project
 
 # Variables
-TRAIN_DATA_PATH = path/to/train_data.csv
-VALIDATE_DATA_PATH = path/to/validate_data.csv
+TRAIN_DATA_PATH = artifacts/train_data.csv
+VALIDATE_DATA_PATH = artifacts/validate_data.csv
 TRAIN_SCRIPT = src/components/model_trainer.py
 DATA_INGEST_SCRIPT = src/components/data_ingestion.py
 DATA_PREPROCESS_SCRIPT = src/components/data_preprocessing.py
