@@ -8,8 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import KFold, RandomizedSearchCV
-from sqlalchemy import create_engine, inspect
-from sqlalchemy.exc import OperationalError
 
 from src.exception import CustomException
 from src.logger import logging

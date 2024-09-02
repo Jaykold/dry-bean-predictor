@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - beanprediction
 on:
   push:
     branches:
-      - main
+      - client-side
   workflow_dispatch:
 
 jobs:
@@ -26,10 +26,10 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-        
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
@@ -61,7 +61,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -75,4 +75,3 @@ jobs:
         with:
           app-name: 'beanprediction'
           slot-name: 'Production'
-          

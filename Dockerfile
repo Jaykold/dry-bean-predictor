@@ -1,15 +1,15 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim
 
-RUN pip install -U pip
+# Upgrade pip without caching to save space
+RUN pip install --no-cache-dir -U pip
 
+# Set working directory
 WORKDIR /app
 
-COPY requirements.txt .
-
-COPY setup.py .
-# installs the project in executable mode
-RUN pip install -e .
+# Copy and install dependencies
+COPY requirements.txt setup.py ./
+RUN pip install -e ./
 
 # Copy the rest of the application code
 COPY . .
